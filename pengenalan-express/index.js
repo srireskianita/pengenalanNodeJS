@@ -32,6 +32,19 @@ app.get('.multi-handler', function(req, res, next){
     res.send('Sukses')
 })
 
+app.get('/index', (req,res,next) => {
+    res.sendFile(__dirname + '/index.html')
+})
+
+app.get('/pdf', (req, res, next) => {
+    res.download(__dirname + '/tugasnodejs.pdf', 'Tugas.pdf')
+  })
+  
+  app.get('/pelatihan', function(req, res, next) {
+    res.render('contoh', { subBab: req.query.subBab })
+  })
+
+  
 app.use((err, req, res, next) => {
     console.log(err)
     res.send('terjadi error')
